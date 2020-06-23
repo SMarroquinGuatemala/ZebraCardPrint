@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZebraCardPrint", "ZebraCardPrint.csproj", "{228E9DBA-C2DB-4D39-876B-72FDB32F5AC4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{228E9DBA-C2DB-4D39-876B-72FDB32F5AC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{228E9DBA-C2DB-4D39-876B-72FDB32F5AC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{228E9DBA-C2DB-4D39-876B-72FDB32F5AC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{228E9DBA-C2DB-4D39-876B-72FDB32F5AC4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
+		SolutionGuid = {E7718760-5C9A-4E82-80C6-ABD399D3A6FB}
+	EndGlobalSection
+EndGlobal

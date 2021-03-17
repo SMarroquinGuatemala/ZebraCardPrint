@@ -27,7 +27,7 @@ namespace ZebraCardPrint
       private const int CARD_FEED_TIMEOUT = 30000;
       private string Printer = null;
       DataTable dataTable = new  DataTable();
-      int xposition = 15;
+      int xposition = 10;
       
 
 
@@ -53,6 +53,7 @@ namespace ZebraCardPrint
 
          Font font = new Font("Arial", 7, FontStyle.Bold);
          Font fontIGSS = new Font("Arial", 9, FontStyle.Bold);
+         Font fontFechaEmision = new Font("Arial", 5, FontStyle.Regular);
          string Recomendaciones = "La  empresa no se hace responsable por el mal uso de este carné, " +
          "el cual es válido únicamente dentro de nuestras instalaciones y durante el periodo de relación laboral."+
          " En caso  de emergencia  comunicarse con Recursos Humanos   al 7820-1700.";
@@ -93,6 +94,8 @@ namespace ZebraCardPrint
 
          graphics.DrawText("Teléfono Clínica Médica:",font, Color.Black, 280, 480, 600, 45, 0, TextAlignment.Left, TextAlignment.Center);
          graphics.DrawText("7820 1746", fontIGSS, Color.Black, 280, 510, 600, 45, 0, TextAlignment.Left, TextAlignment.Center);
+         graphics.DrawText("Fecha de Emisión:"   , fontFechaEmision, Color.Black, 280, 540, 600, 45, 0, TextAlignment.Left, TextAlignment.Center);
+         graphics.DrawText(DateTime.Now.ToString("dd/MM/yyyy"), fontFechaEmision, Color.Black, 280, 570, 600, 45, 0, TextAlignment.Left, TextAlignment.Center);
 
 
 
@@ -135,7 +138,7 @@ namespace ZebraCardPrint
          graphics.DrawImage(imageData,10, 10, 450, 150, RotationType.RotateNoneFlipNone);
          graphics.DrawImage(imagePhoto, 560, 0, 445, 460, RotationType.RotateNoneFlipNone);
 
-         graphics.DrawText("Puesto:", fontlabel, Color.FromArgb(2, 115, 199), 20, 160, 0);
+         graphics.DrawText("Puesto:", fontlabel, Color.FromArgb(2, 115, 199), xposition, 160, 0);
 
          if (Puesto.Length >= 35)
          {
@@ -160,24 +163,32 @@ namespace ZebraCardPrint
             puestosplit = 4;
          }
 
-         if (Puesto.Length > 33)
+         if (Puesto.Length >= 30)
+         {
+            for (int i = 0; i < Puesto.Split(spacewhite).Length; i++)
             {
-               for (int i = 0; i < Puesto.Split(spacewhite).Length; i++)
+               if (i < Puesto.Split(spacewhite).Length - puestosplit)
                {
-                  if (i < Puesto.Split(spacewhite).Length - puestosplit)
-                  {
-                     NombrePuestoEmpresa += Puesto.Split(spacewhite)[i].ToString() + " ";
-        
-                  }
-                  else
-                  {
-                  NombrePuestoEmpresa2 += Puesto.Split(spacewhite)[i].ToString() + " ";
-                  
-                  }
+                  NombrePuestoEmpresa += Puesto.Split(spacewhite)[i].ToString() + " ";
 
                }
-            graphics.DrawText(NombrePuestoEmpresa, font, Color.Black, xposition, 190, 540, 45, 0, TextAlignment.Left, TextAlignment.Top, true);
-            graphics.DrawText(NombrePuestoEmpresa2, font, Color.Black, xposition, 225, 540, 45, 0, TextAlignment.Left, TextAlignment.Top, true);
+               else
+               {
+                  NombrePuestoEmpresa2 += Puesto.Split(spacewhite)[i].ToString() + " ";
+
+               }
+
+            }
+            if (!string.IsNullOrEmpty(NombrePuestoEmpresa))
+            {
+               graphics.DrawText(NombrePuestoEmpresa, font, Color.Black, xposition, 190, 540, 45, 0, TextAlignment.Left, TextAlignment.Top, true);
+               graphics.DrawText(NombrePuestoEmpresa2, font, Color.Black, xposition, 225, 540, 45, 0, TextAlignment.Left, TextAlignment.Top, true);
+            }
+            else
+            {
+               graphics.DrawText(NombrePuestoEmpresa2, font, Color.Black, xposition, 190, 540, 45, 0, TextAlignment.Left, TextAlignment.Top, true);
+            }
+
          }
       
          else
@@ -214,7 +225,7 @@ namespace ZebraCardPrint
             departamentosplit = 5;
          }
 
-         if (Departamento.Length >= 33)
+         if (Departamento.Length >= 30)
          {
             for (int i = 0; i < Departamento.Split(spacewhite).Length; i++)
             {
@@ -231,8 +242,16 @@ namespace ZebraCardPrint
                }
 
             }
-            graphics.DrawText(NombreDepartamentoEmpresa, font, Color.Black, xposition, 320, 540, 45, 0, TextAlignment.Left, TextAlignment.Top, true);
-            graphics.DrawText(NombreDepartamentoEmpresa2, font, Color.Black, xposition, 355, 540, 45, 0, TextAlignment.Left, TextAlignment.Bottom, true);
+            if (!string.IsNullOrEmpty(NombreDepartamentoEmpresa))
+            {
+               graphics.DrawText(NombreDepartamentoEmpresa, font, Color.Black, xposition, 320, 540, 45, 0, TextAlignment.Left, TextAlignment.Top, true);
+               graphics.DrawText(NombreDepartamentoEmpresa2, font, Color.Black, xposition, 355, 540, 45, 0, TextAlignment.Left, TextAlignment.Bottom, true);
+            }
+            else
+            
+            {
+               graphics.DrawText(NombreDepartamentoEmpresa2, font, Color.Black, xposition, 320, 540, 45, 0, TextAlignment.Left, TextAlignment.Top, true);
+            }
          }
          else
          {
